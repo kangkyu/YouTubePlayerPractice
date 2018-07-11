@@ -1,38 +1,25 @@
 package com.example.android.youtubeplayerpractice;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.view.View;
+import android.widget.Button;
 
-import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
-
-public class MainActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
-
-    YouTubePlayerView youTubeView;
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-        youTubeView.initialize(DeveloperKey.GOOGLE_API_KEY, this);
-    }
+        Button b = (Button) findViewById(R.id.button_open_window);
 
-    @Override
-    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
-
-        if (!wasRestored) {
-            youTubePlayer.cueVideo("wKJ9KzGQq0w");
-        }
-    }
-
-    @Override
-    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-
-        String errorMessage = String.format(getString(R.string.error_player), youTubeInitializationResult.toString());
-        Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, PlayerViewActivity.class));
+            }
+        });
     }
 }
