@@ -10,3 +10,4 @@
 .externalNativeBuild
 
 .idea/
+app/src/main/java/com/example/android/youtubeplayerpractice/DeveloperKey.java
